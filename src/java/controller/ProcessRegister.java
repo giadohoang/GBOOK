@@ -7,10 +7,12 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import util.Validate;
 
 /**
  *
@@ -33,18 +35,28 @@ public class ProcessRegister extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String firstName = request.getParameter("first-name");
         String lastName = request.getParameter("last-name");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProcessRegister</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>First Name: " + firstName + "</h1>");
-            out.println("<h1>Last Name: " + lastName + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String emailOrPhone = request.getParameter("mobile-or-email");
+        String password = request.getParameter("user-password");
+        String day = request.getParameter("day");
+        String month = request.getParameter("month");
+        String year = request.getParameter("year");
+        String sex = request.getParameter("sex");
+        
+        RequestDispatcher dis = request.getRequestDispatcher("register.jsp");
+        if(!Validate.checkName(firstName)){
+            request.setAttribute("error", "First name is invalid");
+            dis.forward(request, response);
+        } else if(!Validate.checkName(lastName)){
+            request.setAttribute("error", "Last name is invalid");
+            dis.forward(request, response);
+        } else if(!Validate.checkPassword(password)){
+            request.setAttribute("error", "Password is invalid");
+            dis.forward(request, response);
+        } else if(!Validate.checkEmailOrPhone(emailOrPhone)){
+            request.setAttribute("error", "Email/ Phone is invalid");
+            dis.forward(request, response);
+        } else {
+            response.sendRedirect("login.jsp");
         }
     }
 

@@ -1,51 +1,12 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>BMAGBOOK - Connect your world</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <script src="js/jquery-2.2.4.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="css/main.css">
-</head>
+<jsp:include page="WEB-INF/head_tag.jsp">
+    <jsp:param name="title" value="Your Profile"/>
+</jsp:include>
 
 <body>
-    <nav class="container-fluid" id="main-nav-user-home">
-        <div class="row">
-            <div class="col-md-6" id="user-tools-left">
-                <a id="main-logo">B</a>
-                <div id="search-box">
-                    <input type="text" name="search-friend">
-                    <button><i class="fa fa-search"></i></button>
-                </div>
-            </div>
-            <div class="col-md-6" id="user-tools-right">
-                <ul>
-                    <li>
-                        <a href="/"><img src="img/avatar.jpg"> An</a>
-                    </li>
-                    <li><a href="/">Home <span>20+</span></a></li>
-                    <li>
-                        <a href="/"><i class="fa fa-users" aria-hidden="true"></i></a>
-                        <span class="mess-notif">9</span>
-                    </li>
-                    <li>
-                        <a href="/"><i class="fa fa-weixin" aria-hidden="true"></i></a>
-                        <span class="mess-notif">25</span>
-                    </li>
-                    <li>
-                        <a href="/"><i class="fa fa-globe" aria-hidden="true"></i></a>
-                        <span class="mess-notif">5</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <%@include file="WEB-INF/top_nav.jspf" %>
 
     <section class="container-fluid" id="main-body">
         <div class="row no-pad">

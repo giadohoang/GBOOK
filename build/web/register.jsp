@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>BMAGBOOK - Connect your world</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-    
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <script src="js/jquery-2.2.4.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="css/main.css">
-</head>
+<jsp:include page="WEB-INF/head_tag.jsp">
+    <jsp:param name="title" value="Create new account"/>
+</jsp:include>
 
 <body>
     <nav class="container-fluid" id="main-nav-login">
@@ -49,17 +40,26 @@
                 <div class="col-md-6">
                     <h3>Create an account</h3>
                     <p>It's free and always will be.</p>
+                    <div class="alert-danger">
+                        <%= util.StringUtil.getString(request.getAttribute("error"))%>
+                    </div>
                     <form action="ProcessRegister" method="post" class="register-form">
                         <div class="reg-input-full-name">
                             <div class="reg-input" id="first-name">
-                                <input type="text" name="first-name" placeholder="First name">
+                                <input type="text"
+                                       name="first-name"
+                                       placeholder="First name"
+                                       value="<%= util.StringUtil.getString(request.getParameter("first-name"))%>">
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                 <span class="error-popup">Input your first name
                                     <span></span><span></span>
                                 </span>
                             </div>
                             <div class="reg-input" id="last-name">
-                                <input type="text" name="last-name" placeholder="Last name">
+                                <input type="text"
+                                       name="last-name"
+                                       placeholder="Last name"
+                                       value="<%= util.StringUtil.getString(request.getParameter("last-name"))%>">
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                 <span class="error-popup">Input your last name
                                     <span></span><span></span>
@@ -67,19 +67,16 @@
                             </div>
                         </div>
                         <div class="reg-input" id="mobile-or-email">
-                            <input type="text" name="mobile-or-email" placeholder="Mobile phone or email address">
+                            <input type="text"
+                                   name="mobile-or-email"
+                                   placeholder="Mobile phone or email address"
+                                   value="<%= util.StringUtil.getString(request.getParameter("mobile-or-email"))%>">
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                             <span class="error-popup">Input your email or phone
                                 <span></span><span></span>
                             </span>
                         </div>
-                        <div class="reg-input" id="re-mobile-or-email">
-                            <input type="text" name="re-mobile-or-email" placeholder="Re-enter mobile phone or email address">
-                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                            <span class="error-popup">Re-input your email or phone
-                                <span></span><span></span>
-                            </span>
-                        </div>
+                        
                         <div class="reg-input" id="user-password">
                             <input type="password" name="user-password" placeholder="New password">
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
@@ -89,13 +86,13 @@
                         </div>
                         <label style="display:block;">Birthday</label>
                         <div class="reg-input">
-                            <select id="days">
+                            <select name="day" id="days">
                                 <option>Day</option>
                             </select>
-                            <select id="months">
+                            <select name="month" id="months">
                                 <option>Month</option>
                             </select>
-                            <select id="years">
+                            <select name="year" id="years">
                                 <option>Year</option>
                             </select>
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
@@ -104,7 +101,7 @@
                             </span>
                         </div>
                         <div class="reg-input">
-                            <input type="radio" name="sex" value="female"><label>Female</label>
+                            <input checked="true" type="radio" name="sex" value="female"><label>Female</label>
                             <input type="radio" name="sex" value="male"><label>Male</label>
                         </div>
                         <p class="help-block">
@@ -223,17 +220,41 @@
     
     <script>
         $(function() {
+            var day = "<%= util.StringUtil.getString(request.getParameter("day"))%>";
+            var month = "<%= util.StringUtil.getString(request.getParameter("month"))%>";
+            var year = "<%= util.StringUtil.getString(request.getParameter("year"))%>";
+
             for (var i = 1; i <= 31; i++) {
-                $("#days").append("<option>" + i + "</option>");    
+                if(i == day){
+                    $("#days").append("<option selected>" + i + "</option>");    
+                } else {
+                     $("#days").append("<option>" + i + "</option>");  
+                }
+                 
             }
             
             for (var i = 1; i <= 12; i++) {
-                $("#months").append("<option>" + i + "</option>");    
+                if(i == month){
+                     $("#months").append("<option selected>" + i + "</option>");   
+                }
+                else{
+                     $("#months").append("<option>" + i + "</option>");   
+                }
+                
             }
             
             for (var i = 2016; i >= 1905; i--) {
-                $("#years").append("<option>" + i + "</option>");    
+                if(i == year){
+                    $("#years").append("<option selected>" + i + "</option>");
+                }
+                else{
+                    $("#years").append("<option>" + i + "</option>");    
+                }
+                    
             }
+            
+            var selectedSex = "<%= util.StringUtil.getString(request.getParameter("sex"))%>";
+            $("input[name=sex][value=" + selectedSex + "]").prop('checked', true);
         });
     </script>
 </body>
