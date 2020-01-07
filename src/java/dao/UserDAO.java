@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.io.InputStream;
 import java.sql.*;
 import model.Profile;
 
@@ -13,6 +14,22 @@ import model.Profile;
  * @author Gia
  */
 public class UserDAO {
+    
+    public static boolean updateUserAvatar(InputStream inputStream, String emailOrPhone)
+    {
+        String update = "update tbl_profile set avatar = ? "
+                + "where email_mobile = ?";
+        try (Connection c = openConnection();
+        PreparedStatement ps = c.prepareStatement(update)) {
+            ps.setBlob(1, inputStream);
+            ps.setString(2, emailOrPhone);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }    
     public static Connection openConnection(){
         Connection conn = null;
         try{
@@ -111,8 +128,8 @@ public class UserDAO {
     public static byte[] getImageData(String emailOrPhone){
         String select = "select avatar from tbl_profile "
                 +"where email_mobile = ?";
-        try (Connection c = openConnection()) {
-            PreparedStatement ps = c.prepareStatement(select);
+        try (Connection c = openConnection(); PreparedStatement ps = c.prepareStatement(select)) {
+            
             ps.setString(1, emailOrPhone);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){

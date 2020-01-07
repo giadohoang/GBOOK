@@ -14,8 +14,16 @@
             <div class="col-md-8 no-pad">
                 <div class="profile-header">
                     <div class="profile-header-top">
-                        <span id="profile-button-add-cover"><i class="fa fa-camera" aria-hidden="true"></i> Add Cover Photo</span>
-                        <img src="img/profile.jpg">
+                        <span id="profile-button-add-cover">
+                                <form action="UploadImage" id="frmUploadPhoto" 
+                                      enctype="multipart/form-data" method="post" >
+                                    <i class="fa fa-camera" aria-hidden="true"></i>
+                                    Add Cover Photo
+                                    <input class="input-cover-photo" type="file" 
+                                           id="userCoverPhoto" name="userCoverPhoto"/>
+                                </form>
+                            </span>
+                        <img src="${pageContext.servletContext.contextPath}/ProcessImage?emailOrPhone=${sessionScope.user.emailOrPhone}">
                         <h3>
                             ${sessionScope.user.firstName}
                             ${sessionScope.user.lastName}
@@ -66,7 +74,7 @@
 
                                           <label>Email/Mobile:</label>
                                           <input required type="email" name="mobile-or-email" 
-                                                 vvalue="${sessionScope.user.emailOrPhone}"/>
+                                                 value="${sessionScope.user.emailOrPhone}"/>
 
                                           <label>Password:</label>
                                           <input required type="password" name="user-password" />
@@ -237,6 +245,12 @@
     </section>
     <script>
         $(function() {
+            $('#userCoverPhoto').change(function(){
+               $('#frmUploadPhoto').submit(); 
+            });
+            
+            
+            
             var day = "${dates:getDatePart(sessionScope.user.birthday)[0]}";
             var month = "${dates:getDatePart(sessionScope.user.birthday)[1]}";
             var year = "${dates:getDatePart(sessionScope.user.birthday)[2]}";
