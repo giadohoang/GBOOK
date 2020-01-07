@@ -7,6 +7,8 @@ package dao;
 
 import java.io.InputStream;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import model.Profile;
 
 /**
@@ -14,6 +16,46 @@ import model.Profile;
  * @author Gia
  */
 public class UserDAO {
+    
+    public static List<Profile> getFriendList(int me){
+        List<Profile> list = new ArrayList<>();
+        String select = "select friend_to from tbl_friends where me = ?";
+        try (Connection c = openConnection();
+                PreparedStatement ps = c.prepareStatement(select)) {
+            ps.setInt(1, me);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                int friendId = rs.getInt("friend_to");
+                Profile profile = getProfileById(friendId);
+                list.add(profile);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
+    public static Profile getProfileById(int id){
+        Profile profile = null;
+        String select = "select * from tbl_profile where id = ?";
+        try (Connection c = openConnection();
+                PreparedStatement ps = c.prepareStatement(select)){
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                profile = new Profile(rs.getInt("id"), 
+                                    rs.getString("first_name"), 
+                                    rs.getString("last_name"), 
+                                    rs.getString("email_mobile"), 
+                                    rs.getString("password"), 
+                                    rs.getString("birthday"), 
+                                    rs.getString("sex"));
+            }
+        } catch(Exception e){
+        e.printStackTrace();
+        }
+        return profile;
+    }
     
     public static boolean updateUserAvatar(InputStream inputStream, String emailOrPhone)
     {
@@ -54,7 +96,7 @@ public class UserDAO {
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                profile = new Profile(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email_mobile"), rs.getString("password"), rs.getString("birthday"), rs.getString("sex"));
+                profile = new Profile(rs.getInt("id"),rs.getString("first_name"), rs.getString("last_name"), rs.getString("email_mobile"), rs.getString("password"), rs.getString("birthday"), rs.getString("sex"));
             }
         } catch (Exception e) {
             e.printStackTrace();

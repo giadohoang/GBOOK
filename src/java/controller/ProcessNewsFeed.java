@@ -5,14 +5,17 @@
  */
 package controller;
 
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Profile;
 
 /**
  *
@@ -36,6 +39,9 @@ public class ProcessNewsFeed extends HttpServlet {
         HttpSession session = request.getSession();
         //if user already login
         if(session.getAttribute("user") != null){
+            Profile profile = (Profile)session.getAttribute("user");
+            List<Profile> list = UserDAO.getFriendList(profile.getId());
+            request.setAttribute("friendList", list);
             RequestDispatcher dis = request.getRequestDispatcher("WEB-INF/news-feed.jsp");
             dis.forward(request, response);
         } else {

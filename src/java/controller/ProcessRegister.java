@@ -66,7 +66,7 @@ public class ProcessRegister extends HttpServlet {
               dis.forward(request, response);
         } else {
             String birthday = String.format("%s-%s-%s", day, month, year);
-            Profile profile = new Profile(firstName, lastName, emailOrPhone, password, birthday, sex);
+            Profile profile = new Profile(0, firstName, lastName, emailOrPhone, password, birthday, sex);
             boolean result = UserDAO.addNewUser(profile);
             if(result){
                 response.sendRedirect("login.jsp");
