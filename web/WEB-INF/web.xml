@@ -1,28 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <context-param>
+        <param-name>db.driver</param-name>
+        <param-value>com.mysql.jdbc.Driver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>db.url</param-name>
+        <param-value>jdbc:mysql://localhost:3306/bmagbook</param-value>
+    </context-param>
+    <context-param>
+        <param-name>db.user</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>db.password</param-name>
+        <param-value>123456</param-value>
+    </context-param>
     <servlet>
         <servlet-name>ProcessRegister</servlet-name>
         <servlet-class>controller.ProcessRegister</servlet-class>
-        <init-param>
-            <param-name>db.driver</param-name>
-            <param-value>com.mysql.jdbc.Driver</param-value>
-        </init-param>
-        <init-param>
-            <param-name>db.url</param-name>
-            <param-value>jdbc:mysql://localhost:3306/bmagbook</param-value>
-        </init-param>
-        <init-param>
-            <param-name>db.user</param-name>
-            <param-value>root</param-value>
-        </init-param>
-        <init-param>
-            <param-name>db.password</param-name>
-            <param-value>123456</param-value>
-        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessLogin</servlet-name>
+        <servlet-class>controller.ProcessLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessNewsFeed</servlet-name>
+        <servlet-class>controller.ProcessNewsFeed</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessLogout</servlet-name>
+        <servlet-class>controller.ProcessLogout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessProfile</servlet-name>
+        <servlet-class>controller.ProcessProfile</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProcessRegister</servlet-name>
         <url-pattern>/ProcessRegister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessLogin</servlet-name>
+        <url-pattern>/ProcessLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessNewsFeed</servlet-name>
+        <url-pattern>/ProcessNewsFeed</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessLogout</servlet-name>
+        <url-pattern>/ProcessLogout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessProfile</servlet-name>
+        <url-pattern>/ProcessProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

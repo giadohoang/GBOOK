@@ -1,3 +1,4 @@
+<%@page import="model.Profile"%>
 <nav class="container-fluid" id="main-nav-user-home">
     <div class="row">
         <div class="col-md-6" id="user-tools-left">
@@ -10,7 +11,12 @@
         <div class="col-md-6" id="user-tools-right">
             <ul>
                 <li>
-                    <a href="/"><img src="img/avatar.jpg"> An</a>
+                    <a href="/"><img src="img/avatar.jpg">
+                    <%
+                        Profile profile = (Profile)session.getAttribute("user");
+                    %>
+                    <%= profile.getFirstName() %>
+                    </a>
                 </li>
                 <li><a href="/">Home <span>20+</span></a></li>
                 <li>
@@ -25,6 +31,13 @@
                     <a href="/"><i class="fa fa-globe" aria-hidden="true"></i></a>
                     <span class="mess-notif">5</span>
                 </li>
+                <% if(session.getAttribute("user") != null) { %>
+                <li>
+                    <a href="ProcessLogout">Sign out</a>
+                   
+                </li>
+                <% } %>
+                
             </ul>
         </div>
     </div>

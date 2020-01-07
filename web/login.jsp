@@ -19,11 +19,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="/" method="post" id="body-login-form">
+                    <form action="ProcessLogin" method="post" id="body-login-form">
                         <label>Login to BMAGBOOK</label>
+                        <div class="alert-danger">
+                            <%= util.StringUtil.getString(session.getAttribute("message"))%>
+                        </div>
                         <input type="text" name="user-login-id" placeholder="Email address or phone number" />
                         <input type="password" name="user-login-password" placeholder="Password" />
-                        <button type="button" id="btn-login">Login</button>
+                        <button type="submit" id="btn-login">Login</button>
                         <a href="/">Forgotten password?</a>
                         <a href="/">Signup for BMAGBook?</a>
                     </form>

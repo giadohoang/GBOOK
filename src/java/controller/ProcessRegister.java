@@ -33,13 +33,7 @@ public class ProcessRegister extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    public void init(ServletConfig config) throws ServletException{
-        DBConfig.driver = config.getInitParameter("db.driver");
-        DBConfig.url = config.getInitParameter("db.url");
-        DBConfig.user = config.getInitParameter("db.user");
-        DBConfig.password = config.getInitParameter("db.password");
-    }
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
