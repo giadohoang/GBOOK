@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Profile;
 
 /**
  *
@@ -35,6 +37,31 @@ public class ProcessProfile extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         
         HttpSession session = request.getSession();
+        
+        String action = request.getParameter("action");
+        if(action != null && action.equals("update-profile")){
+            String firstName = request.getParameter("first-name");
+            String lastName = request.getParameter("last-name");
+            String newEmailOrPhone = request.getParameter("mobile-or-email");
+            String password = request.getParameter("user-password");
+            String day = request.getParameter("day");
+            String month = request.getParameter("month");
+            String year = request.getParameter("year");
+            String birthday = String.format("%s-%s-%s", day, month, year);
+            String sex = request.getParameter("sex");
+            Profile profile = new Profile(firstName,lastName, newEmailOrPhone, password, birthday,sex);
+            String currentEmailOrPhone = ((Profile)session.getAttribute("user")).getEmailOrPhone();
+            //Try update user info into db
+            boolean result = UserDAO.updateUser(profile, currentEmailOrPhone);
+            if(!result){
+                session.setAttribute("error", "cannot update. Try again");
+            } else {
+                //clear wanring error message if user fixed error
+                session.setAttribute("error", "");
+                session.setAttribute("user", profile);
+            }
+        }
+        
         if(session.getAttribute("user") != null){
             RequestDispatcher dis = request.getRequestDispatcher("WEB-INF/profile.jsp");
             dis.forward(request, response);

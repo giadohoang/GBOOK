@@ -84,12 +84,12 @@ public class UserDAO {
         return false;
     }
     
-    //We need both profile and emailOrPhone String in case user wish to change current emailOrPhone value
-    //Then emailOrPhone will be used to find data
-    //and profile.emailOrPhone string will be new (if so) value for emailOrPhone
-    public static boolean updateIser(Profile profile, String emailOrPhone){
+    //We need both profile and currentEmailOrPhone String in case user wish to change currentEmailOrPhone value
+    //Then currentEmailOrPhone will be used to find data
+    //and profile.emailOrPhone string will be new (if so) value for currentEmailOrPhone
+    public static boolean updateUser(Profile profile, String currentEmailOrPhone){
         try (Connection c = openConnection()) {
-            String update = "upadte tbl_profile set first_name = ?, last_name = ?, "
+            String update = "update tbl_profile set first_name = ?, last_name = ?, "
                     + "email_mobile = ?, password = ?, birthday = ?, "
                     + "sex = ? where email_mobile = ?";
             PreparedStatement ps = c.prepareStatement(update);
@@ -99,7 +99,7 @@ public class UserDAO {
             ps.setString(4, profile.getPassword());
             ps.setString(5, profile.getBirthday());
             ps.setString(6, profile.getSex());
-            ps.setString(7, emailOrPhone);
+            ps.setString(7, currentEmailOrPhone);
             ps.executeUpdate();
             return true;
         } catch (Exception e) {

@@ -49,7 +49,10 @@
                             <div class="col-md-8 profile-body-content-editing">
                                 <h4>Overview</h4>
                                 <div class="overview-form">
-                                  <form action="/" method="post">
+                                    <div class="alert-danger">
+                                        <%= util.StringUtil.getString(session.getAttribute("error"))%>
+                                    </div>
+                                  <form action="ProcessProfile" method="post">
                                           <label>First Name:</label>
                                           <input required type="text" name="first-name" maxlength="30" 
                                                  value="<%= profile.getFirstName() %>"
@@ -83,7 +86,7 @@
                                               </select>
                                           </div>
 
-                                          <button type="submit">Save Changes</button>
+                                          <button name="action" value ="update-profile" type="submit">Save Changes</button>
                                       </form>
                                 </div>
                             </div>
