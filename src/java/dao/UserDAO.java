@@ -107,4 +107,20 @@ public class UserDAO {
         }
         return false;
     }
+    
+    public static byte[] getImageData(String emailOrPhone){
+        String select = "select avatar from tbl_profile "
+                +"where email_mobile = ?";
+        try (Connection c = openConnection()) {
+            PreparedStatement ps = c.prepareStatement(select);
+            ps.setString(1, emailOrPhone);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getBytes("avatar");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

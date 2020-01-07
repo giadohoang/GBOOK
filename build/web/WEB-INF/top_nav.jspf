@@ -11,7 +11,8 @@
         <div class="col-md-6" id="user-tools-right">
             <ul>
                 <li>
-                    <a href="/"><img src="img/avatar.jpg">
+                    <a href="/">
+                        <img class="avatar-small" src="${pageContext.servletContext.contextPath}/ProcessImage?emailOrPhone=${sessionScope.user.emailOrPhone}">
                     ${sessionScope.user.firstName}
                     </a>
                 </li>

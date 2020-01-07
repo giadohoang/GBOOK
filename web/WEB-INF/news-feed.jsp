@@ -13,7 +13,7 @@
             <div class="col-md-2 no-pad">
                 <div class="left-tool-section">
                     <a href="">
-                        <img src="img/avatar.jpg"> 
+                        <img class="avatar-small" src="${pageContext.servletContext.contextPath}/ProcessImage?emailOrPhone=${sessionScope.user.emailOrPhone}">
                         ${sessionScope.user.firstName}
                         ${sessionScope.user.lastName}
                     </a>
