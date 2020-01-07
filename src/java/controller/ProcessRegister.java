@@ -5,13 +5,17 @@
  */
 package controller;
 
+import dao.DBConfig;
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.ServletConfig;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Profile;
 import util.Validate;
 
 /**
@@ -29,6 +33,14 @@ public class ProcessRegister extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
+    public void init(ServletConfig config) throws ServletException{
+        DBConfig.driver = config.getInitParameter("db.driver");
+        DBConfig.url = config.getInitParameter("db.url");
+        DBConfig.user = config.getInitParameter("db.user");
+        DBConfig.password = config.getInitParameter("db.password");
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -49,14 +61,26 @@ public class ProcessRegister extends HttpServlet {
         } else if(!Validate.checkName(lastName)){
             request.setAttribute("error", "Last name is invalid");
             dis.forward(request, response);
-        } else if(!Validate.checkPassword(password)){
-            request.setAttribute("error", "Password is invalid");
-            dis.forward(request, response);
         } else if(!Validate.checkEmailOrPhone(emailOrPhone)){
             request.setAttribute("error", "Email/ Phone is invalid");
             dis.forward(request, response);
+        } else if(!Validate.checkPassword(password)){
+            request.setAttribute("error", "Password is invalid");
+            dis.forward(request, response);
+        } else if(UserDAO.isDuplicateEmailOrPhone(emailOrPhone)) {
+              request.setAttribute("error", "Email/ Phone is duplicated");
+              dis.forward(request, response);
         } else {
-            response.sendRedirect("login.jsp");
+            String birthday = String.format("%s-%s-%s", day, month, year);
+            Profile profile = new Profile(firstName, lastName, emailOrPhone, password, birthday, sex);
+            boolean result = UserDAO.addNewUser(profile);
+            if(result){
+                response.sendRedirect("login.jsp");
+            }else{
+                request.setAttribute("error", "Try again");
+                dis.forward(request, response);
+            }
+            
         }
     }
 

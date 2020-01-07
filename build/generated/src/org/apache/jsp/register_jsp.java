@@ -151,7 +151,7 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </span>\r\n");
       out.write("                        </div>\r\n");
       out.write("                        <div class=\"reg-input\">\r\n");
-      out.write("                            <input type=\"radio\" name=\"sex\" value=\"female\"><label>Female</label>\r\n");
+      out.write("                            <input checked=\"true\" type=\"radio\" name=\"sex\" value=\"female\"><label>Female</label>\r\n");
       out.write("                            <input type=\"radio\" name=\"sex\" value=\"male\"><label>Male</label>\r\n");
       out.write("                        </div>\r\n");
       out.write("                        <p class=\"help-block\">\r\n");
@@ -312,7 +312,7 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            var selectedSex = \"");
       out.print( util.StringUtil.getString(request.getParameter("sex")));
       out.write("\";\r\n");
-      out.write("            $(\"input[name=sex] [value=\" + selectedSex + \"]\").prop('checked', true);\r\n");
+      out.write("            $(\"input[name=sex][value=\" + selectedSex + \"]\").prop('checked', true);\r\n");
       out.write("        });\r\n");
       out.write("    </script>\r\n");
       out.write("</body>\r\n");
