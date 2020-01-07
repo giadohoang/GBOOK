@@ -41,7 +41,7 @@
                     <h3>Create an account</h3>
                     <p>It's free and always will be.</p>
                     <div class="alert-danger">
-                        <%= util.StringUtil.getString(request.getAttribute("error"))%>
+                        ${requestScope.error}
                     </div>
                     <form action="ProcessRegister" method="post" class="register-form">
                         <div class="reg-input-full-name">
@@ -49,7 +49,7 @@
                                 <input type="text"
                                        name="first-name"
                                        placeholder="First name"
-                                       value="<%= util.StringUtil.getString(request.getParameter("first-name"))%>">
+                                       value="${param["first-name"]}">
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                 <span class="error-popup">Input your first name
                                     <span></span><span></span>
@@ -59,7 +59,7 @@
                                 <input type="text"
                                        name="last-name"
                                        placeholder="Last name"
-                                       value="<%= util.StringUtil.getString(request.getParameter("last-name"))%>">
+                                        value="${param["last-name"]}">
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                 <span class="error-popup">Input your last name
                                     <span></span><span></span>
@@ -70,7 +70,7 @@
                             <input type="text"
                                    name="mobile-or-email"
                                    placeholder="Mobile phone or email address"
-                                   value="<%= util.StringUtil.getString(request.getParameter("mobile-or-email"))%>">
+                                    value="${param["mobile-or-email"]}">
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                             <span class="error-popup">Input your email or phone
                                 <span></span><span></span>
@@ -86,13 +86,13 @@
                         </div>
                         <label style="display:block;">Birthday</label>
                         <div class="reg-input">
-                            <select name="day" id="days">
+                            <select name="day" id="days" value="${param["day"]}">
                                 <option>Day</option>
                             </select>
-                            <select name="month" id="months">
+                            <select name="month" id="months" value="${param["month"]}">
                                 <option>Month</option>
                             </select>
-                            <select name="year" id="years">
+                            <select name="year" id="years" value="${param["year"]}">
                                 <option>Year</option>
                             </select>
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>

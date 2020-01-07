@@ -12,10 +12,7 @@
             <ul>
                 <li>
                     <a href="/"><img src="img/avatar.jpg">
-                    <%
-                        Profile profile = (Profile)session.getAttribute("user");
-                    %>
-                    <%= profile.getFirstName() %>
+                    ${sessionScope.user.firstName}
                     </a>
                 </li>
                 <li><a href="/">Home <span>20+</span></a></li>

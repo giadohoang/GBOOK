@@ -65,7 +65,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <label>Login to BMAGBOOK</label>\r\n");
       out.write("                        <div class=\"alert-danger\">\r\n");
       out.write("                            ");
-      out.print( util.StringUtil.getString(session.getAttribute("message")));
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.message}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\r\n");
       out.write("                        </div>\r\n");
       out.write("                        <input type=\"text\" name=\"user-login-id\" placeholder=\"Email address or phone number\" />\r\n");

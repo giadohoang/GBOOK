@@ -10,6 +10,9 @@ package util;
  * @author Gia
  */
 public class StringUtil {
+    public static String[] getDateParts(String date){
+        return date.split("-");
+    }
     public static String getString(String value){
         return value == null? "": value;
     }
