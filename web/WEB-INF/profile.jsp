@@ -131,120 +131,14 @@
                 </div>
             </div>
             <div class="col-md-2 no-pad">
-                <div id="online-list">
-                    <ul>
-                        <li>
-                            <img src="img/friend1.jpg">
-                            <span>Trung Hiếu</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/friend2.jpg">
-                            <span>Hồng Ngọc</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/friend3.jpg">
-                            <span>Ca Chua</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/avatar.jpg">
-                            <span>Hà An</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/user-comment1.jpg">
-                            <span>Hồng Ngọc</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/user_comment2.jpg">
-                            <span>Hải Sơn</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/user-comment3.jpg">
-                            <span>Hà Giang</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/friend1.jpg">
-                            <span>Trung Hiếu</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/friend2.jpg">
-                            <span>Hồng Ngọc</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/friend3.jpg">
-                            <span>Ca Chua</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/avatar.jpg">
-                            <span>Hà An</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/user-comment1.jpg">
-                            <span>Hồng Ngọc</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/user_comment2.jpg">
-                            <span>Hải Sơn</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/user-comment3.jpg">
-                            <span>Hà Giang</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/friend1.jpg">
-                            <span>Trung Hiếu</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/friend2.jpg">
-                            <span>Hồng Ngọc</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/friend3.jpg">
-                            <span>Ca Chua</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/avatar.jpg">
-                            <span>Hà An</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/user-comment1.jpg">
-                            <span>Hồng Ngọc</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/user_comment2.jpg">
-                            <span>Hải Sơn</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="img/user-comment3.jpg">
-                            <span>Hà Giang</span>
-                            <span></span>
-                        </li>
-                    </ul>
-                </div>
+                <%@include file="/WEB-INF/friend-list.jspf"%>
             </div>
         </div>
     </section>
     <script>
         $(function() {
+           
+            
             $('#userCoverPhoto').change(function(){
                $('#frmUploadPhoto').submit(); 
             });

@@ -250,27 +250,7 @@
         </div>
     </div>
 
-    <script>
-        $(function() {
-            //Load suggested friend with ajax
-            $.ajax({
-                url:'ProcessSuggesstFriend',
-                type:'POST',
-                success: function(data){
-                    $('#suggested-friend').html(data);
-                },
-                error: function(e){
-                    alert('Error loading ajax: ' + e)
-                }
-            })
-            
-            
-            
-            var viewportHeight = $(window).height();
-            $("#online-list ul").css("max-height", viewportHeight);
-        });
-    </script>
+    
     <script src="js/app.js"></script>
 </body>
-
 </html>

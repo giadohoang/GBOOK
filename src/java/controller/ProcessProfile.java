@@ -8,6 +8,7 @@ package controller;
 import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -63,6 +64,9 @@ public class ProcessProfile extends HttpServlet {
         }
         
         if(session.getAttribute("user") != null){
+            Profile profile = (Profile)session.getAttribute("user");
+            List<Profile> list = UserDAO.getFriendList(profile.getId());
+            request.setAttribute("friendList", list);
             RequestDispatcher dis = request.getRequestDispatcher("WEB-INF/profile.jsp");
             dis.forward(request, response);
         } else {

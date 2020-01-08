@@ -220,4 +220,22 @@ $(function () {
             }
         }
     });
+    
+    $('.friend-item button').click(function(){
+            var friendId = $(this).attr('id');
+            $.ajax({
+                url:'ProcessSuggesstFriend',
+                type:'POST',
+                data:{
+                    action:'add-friend',
+                    'friend-id': friendId
+                },
+                success: function(data){
+                    $('#suggested-friend').html(data);
+                },
+                error: function(e){
+                    alert('Error loading ajax' + e);
+                }
+            });
+        });
 });
