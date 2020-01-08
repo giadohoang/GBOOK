@@ -52,6 +52,10 @@
         <servlet-name>IndividualProfile</servlet-name>
         <servlet-class>controller.IndividualProfile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcessSuggesstFriend</servlet-name>
+        <servlet-class>controller.ProcessSuggesstFriend</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcessRegister</servlet-name>
         <url-pattern>/ProcessRegister</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>IndividualProfile</servlet-name>
         <url-pattern>/IndividualProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessSuggesstFriend</servlet-name>
+        <url-pattern>/ProcessSuggesstFriend</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

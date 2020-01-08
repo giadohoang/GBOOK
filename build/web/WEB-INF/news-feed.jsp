@@ -195,89 +195,13 @@
                         <label>PEOPLE YOU MAY KNOW</label>
                         <a href="#">See All</a>
                     </div>
-                    <div class="friend-item">
-                        <img src="img/friend1.jpg">
-                        <span>
-                                <a href="#">Trần Xuân Khôi</a> 
-                                <span style="display:block;">123 mutual friends </span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-
-                    <div class="friend-item">
-                        <img src="img/friend2.jpg">
-                        <span>
-                                <a href="#">Trần Văn Ớt</a> 
-                                <span style="display:block;">Le Thi Ca Chua ...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-
-                    <div class="friend-item">
-                        <img src="img/friend3.jpg">
-                        <span>
-                                <a href="#">Lê Xuân Xoạn</a> 
-                                <span style="display:block;">A mutual friend...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-
-                    <div class="friend-item">
-                        <img src="img/friend2.jpg">
-                        <span>
-                                <a href="#">Trần Văn Ớt</a> 
-                                <span style="display:block;">A mutual friend...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-
-                    <div class="friend-item">
-                        <img src="img/friend3.jpg">
-                        <span>
-                                <a href="#">Trần Văn Ớt</a> 
-                                <span style="display:block;">A mutual friend...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-
-                    <div class="friend-item">
-                        <img src="img/friend1.jpg">
-                        <span>
-                                <a href="#">Trần Văn Ớt</a> 
-                                <span style="display:block;">A mutual friend...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="friend-item">
-                        <img src="img/friend3.jpg">
-                        <span>
-                                <a href="#">Trần Văn Ớt</a> 
-                                <span style="display:block;">A mutual friend...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="friend-item">
-                        <img src="img/friend3.jpg">
-                        <span>
-                                <a href="#">Trần Văn Ớt</a> 
-                                <span style="display:block;">A mutual friend...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
+                    <div id="suggested-friend"></div>
                 </div>
             </div>
         </div>
-        <div class="col-md-2 no-pad">
-            <%@include file="/WEB-INF/friend-list.jspf"%>
-        </div>
+            <div class="col-md-2 no-pad">
+                <%@include file="/WEB-INF/friend-list.jspf"%>
+            </div>
         </div>
         <section id="chat-box">
             <div id="chat-box-header">
@@ -328,6 +252,20 @@
 
     <script>
         $(function() {
+            //Load suggested friend with ajax
+            $.ajax({
+                url:'ProcessSuggesstFriend',
+                type:'POST',
+                success: function(data){
+                    $('#suggested-friend').html(data);
+                },
+                error: function(e){
+                    alert('Error loading ajax: ' + e)
+                }
+            })
+            
+            
+            
             var viewportHeight = $(window).height();
             $("#online-list ul").css("max-height", viewportHeight);
         });

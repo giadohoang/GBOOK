@@ -184,6 +184,47 @@ public class UserDAO {
         return false;
     }
     
+    public static List<Profile> getSuggestedFriend(int me){
+        List<Profile> list = new ArrayList<>();
+        Profile profile = null;
+        String select = "SELECT * FROM bmagbook.tbl_profile "
+                +"where id != ? and id not in "
+                +"(select friend_to from tbl_friends where me = ?)";
+        try (Connection c = openConnection();
+                PreparedStatement ps = c.prepareStatement(select);) {
+            ps.setInt(1, me);
+            ps.setInt(2, me);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                profile = new Profile(rs.getInt("id"),
+                                        rs.getString("first_name"),
+                                        rs.getString("last_name"),
+                                        rs.getString("email_mobile"),
+                                        rs.getString("password"),
+                                        rs.getString("birthday"),
+                                        rs.getString("sex"));
+                list.add(profile);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
+    public static void addFriend(int me, int friend){
+        try (Connection c = openConnection()) {
+            String insert = "INSERT into tbl_friends Values(null,?,?)";
+            PreparedStatement ps = c.prepareStatement(insert);
+            ps.setInt(1, me);
+            ps.setInt(2, friend);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public static byte[] getImageData(String emailOrPhone){
         String select = "select avatar from tbl_profile "
                 +"where email_mobile = ?";
