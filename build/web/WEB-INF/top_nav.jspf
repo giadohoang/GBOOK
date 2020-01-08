@@ -2,7 +2,7 @@
 <nav class="container-fluid" id="main-nav-user-home">
     <div class="row">
         <div class="col-md-6" id="user-tools-left">
-            <a id="main-logo">B</a>
+            <a href="FrontController?action=news-feed" id="main-logo">B</a>
             <div id="search-box">
                 <input type="text" name="search-friend">
                 <button><i class="fa fa-search"></i></button>
@@ -11,7 +11,7 @@
         <div class="col-md-6" id="user-tools-right">
             <ul>
                 <li>
-                    <a href="/">
+                    <a href="FontController?action=view-profile">
                         <img class="avatar-small" src="${pageContext.servletContext.contextPath}/ProcessImage?emailOrPhone=${sessionScope.user.emailOrPhone}">
                     ${sessionScope.user.firstName}
                     </a>

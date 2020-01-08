@@ -44,6 +44,10 @@
         <servlet-name>UploadImage</servlet-name>
         <servlet-class>controller.UploadImage</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FrontController</servlet-name>
+        <servlet-class>controller.FrontController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcessRegister</servlet-name>
         <url-pattern>/ProcessRegister</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>UploadImage</servlet-name>
         <url-pattern>/UploadImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FrontController</servlet-name>
+        <url-pattern>/FrontController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

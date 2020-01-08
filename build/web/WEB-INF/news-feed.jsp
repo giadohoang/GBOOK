@@ -17,7 +17,7 @@
                         ${sessionScope.user.firstName}
                         ${sessionScope.user.lastName}
                     </a>
-                    <a href="ProcessProfile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
+                    <a href="FrontController?action=view-profile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
                 </div>
 
                 <div class="left-tool-section">

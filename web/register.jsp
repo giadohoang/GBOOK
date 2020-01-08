@@ -21,7 +21,7 @@
                         <div class="login-form-input">
                             <label>Password</label>
                             <input type="password" name="user-login-password" />
-                            <button type="button" id="btn-login">Login</button>
+                            <button type="button" name="action" value="Register" id="btn-login">Login</button>
                             <a href="/">Forgotten password?</a>
                         </div>
                     </form>
