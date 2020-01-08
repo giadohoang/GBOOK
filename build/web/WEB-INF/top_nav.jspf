@@ -2,7 +2,7 @@
 <nav class="container-fluid" id="main-nav-user-home">
     <div class="row">
         <div class="col-md-6" id="user-tools-left">
-            <a href="FrontController?action=news-feed" id="main-logo">B</a>
+            <a href="FrontController?action=news-feed" id="main-logo">G</a>
             <div id="search-box">
                 <input type="text" name="search-friend">
                 <button><i class="fa fa-search"></i></button>
