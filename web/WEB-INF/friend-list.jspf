@@ -4,10 +4,10 @@
         <div id="friend-detail-popup">
             <span id="back-triange"></span>
             <span id="front-triange"></span>
-            <img src="img/profile.jpg">
+            <img id="profile-img" src="img/profile.jpg">
             <div id="friend-detail-popup-detail">
                 <p>
-                    <a href="/">Nguyá»n Quá»c Báº£o</a>
+                    <a id="profile-full-name" href="/"></a>
                     <span>36 followers</span>
                 </p>
                 <p>
@@ -21,7 +21,7 @@
         <ul>
             <c:set var="list" value = "${requestScope.friendList}"/>
                 <c:forEach var="friend" items="${list}">    
-                    <li>
+                    <li id="${friend.emailOrPhone}" >
                         <img class="avatar-small" src="${pageContext.servletContext.contextPath}/ProcessImage?emailOrPhone=${friend.emailOrPhone}">
                         <span>${friend.lastName} ${friend.firstName}</span>
                         <span></span>
@@ -29,4 +29,26 @@
                 </c:forEach>
         </ul>
 </div>
- 
+<script>
+$(document).ready(function(){
+    $('#online-list li').hover(function(){
+        var emailOrPhone = $(this).attr('id');
+        $.ajax({
+            url:'IndividualProfile',
+            type:'POST',
+            dataType:'json',
+            data:{
+                emailOrPhone: emailOrPhone
+            },
+            success: function(data){
+                console.log(data.fullName);
+                $('#profile-img').attr('src', data.imageString);
+                $('#profile-full-name').html(data.fullName);
+            },
+            error: function(){
+                alert('cannot load data');
+            }
+        });
+    }, function(){});
+});
+</script>

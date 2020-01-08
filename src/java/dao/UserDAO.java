@@ -86,6 +86,23 @@ public class UserDAO {
         return conn;
     }
     
+     public static Profile getProfileByEmail(String emailOrPhone){
+    Profile profile = null;
+    String select = "select * from tbl_profile " + 
+            "where email_mobile = ?";
+        try (Connection c = openConnection()) {
+            PreparedStatement ps = c.prepareStatement(select);
+            ps.setString(1, emailOrPhone);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                profile = new Profile(rs.getInt("id"),rs.getString("first_name"), rs.getString("last_name"), rs.getString("email_mobile"), rs.getString("password"), rs.getString("birthday"), rs.getString("sex"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    return profile;
+    }
+    
     public static Profile getProfile(String emailOrPhone, String password){
     Profile profile = null;
     String select = "select * from tbl_profile " + 

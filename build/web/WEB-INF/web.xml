@@ -48,6 +48,10 @@
         <servlet-name>FrontController</servlet-name>
         <servlet-class>controller.FrontController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IndividualProfile</servlet-name>
+        <servlet-class>controller.IndividualProfile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcessRegister</servlet-name>
         <url-pattern>/ProcessRegister</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
         <url-pattern>/FrontController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IndividualProfile</servlet-name>
+        <url-pattern>/IndividualProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
